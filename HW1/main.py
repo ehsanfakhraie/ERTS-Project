@@ -13,12 +13,7 @@ class Main:
 
     def run(self):
         # create tasks and add them to task set
-        task1 = Task(name='Task 1', priority=1, period=10, wcet=2, deadline=10)
-        task2 = Task(name='Task 2', priority=2, period=15, wcet=3, deadline=15)
-        task3 = Task(name='Task 3', priority=3, period=20, wcet=4, deadline=20)
-        self.task_set.add_task(task1)
-        self.task_set.add_task(task2)
-        self.task_set.add_task(task3)
+        self.read_tasks_from_csv('task1.csv')
 
         # schedule tasks using EDF algorithm
         self.scheduler.edf(self.task_set)
@@ -44,5 +39,4 @@ class Main:
 
 if __name__ == '__main__':
     main = Main()
-    main.read_tasks_from_csv()
     main.run()
