@@ -8,6 +8,7 @@ class TaskSet:
         self.feasible (bool): Whether the task set is feasible
     """
     def __init__(self, tasks=[]):
+        
         self.tasks = tasks
         self.utility = 0
         self.feasible = False
