@@ -3,7 +3,7 @@ from schedular import Scheduler
 
 class RTOS:
     """Real-Time Operating System Class"""
-    def __init__(self, task_set):
+    def __init__(self, task_set=None):
         """Initialize the RTOs instance
         
         Args:
@@ -24,7 +24,15 @@ class RTOS:
         """
         completed_tasks = []
         for i in range(duration):
-            self.scheduler.run()
+            self.scheduler.schedule()
             completed_tasks += self.scheduler.completed_tasks
         self.printer.print_schedule(completed_tasks)
         return completed_tasks
+    def set_task_set(self, task_set):
+        """Set the task set for the operating system
+        
+        Args:
+            task_set (TaskSet): The task set to run on the operating system
+        """
+        self.task_set = task_set
+        self.scheduler.set_task_set(task_set)

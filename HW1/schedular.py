@@ -35,3 +35,10 @@ class Scheduler:
         # highest_priority = min([task.priority for task in ready_tasks])
         # highest_priority_tasks = [task for task in ready_tasks if task.priority == highest_priority]
         # return highest_priority_tasks[0]
+    def set_task_set(self, task_set):
+        """Set the task set for the scheduler
+        
+        Args:
+            task_set (TaskSet): The task set to be scheduled
+        """
+        self.task_set = task_set

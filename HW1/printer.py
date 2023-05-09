@@ -20,7 +20,7 @@ class Printer:
 
 class TaskSetPrinter:
     """TaskSetPrinter Class"""
-    def __init__(self, task_set):
+    def __init__(self, task_set=None):
         """Initialize the TaskSetPrinter instance
         
         Args:
@@ -38,3 +38,10 @@ class TaskSetPrinter:
         for i, task in enumerate(schedule):
             print(f"Time {i}:")
             self.printer.print_task(task)
+    def set_task_set(self, task_set):
+        """Set the task set to print
+        
+        Args:
+            task_set (TaskSet): The task set to print
+        """
+        self.task_set = task_set

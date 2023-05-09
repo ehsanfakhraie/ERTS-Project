@@ -8,23 +8,25 @@ class Main:
     def __init__(self):
         self.rtos = RTOS()
         self.task_set = TaskSet()
-        self.scheduler = Scheduler()
-        self.printer = Printer()
+        
 
     def run(self):
         # create tasks and add them to task set
-        self.read_tasks_from_csv('task1.csv')
+        self.read_tasks_from_csv('tasks1.csv')
 
         # schedule tasks using EDF algorithm
-        self.scheduler.edf(self.task_set)
-
-        # print scheduled task set
-        self.printer.print_schedule(self.task_set)
+        self.rtos.set_task_set(self.task_set)
+        # you need to find hyper period and change duration to hyper period
+        duration=350
+        self.rtos.run(duration)
     def read_tasks_from_csv(self, filename):
         with open(filename, 'r') as csvfile:
-            taskreader = csv.reader(csvfile)
+            # header in csv file: priority,name,  state, type, act_time, period, wcet, deadline
+            taskreader = csv.reader(csvfile, delimiter=',',)
+            next(taskreader, None)  # skip the headers
             for row in taskreader:
-                name, priority, state, type, act_time, period, wcet, deadline = row
+                print(row)
+                priority,name,  state, type, act_time, period, wcet, deadline = row
                 task = Task(
                     priority=int(priority),
                     name=name,
@@ -35,7 +37,7 @@ class Main:
                     wcet=int(wcet),
                     deadline=int(deadline)
                 )
-                self.taskset.add_task(task)
+                self.task_set.add_task(task)
 
 if __name__ == '__main__':
     main = Main()
