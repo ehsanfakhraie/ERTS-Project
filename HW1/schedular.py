@@ -7,6 +7,7 @@ class Scheduler:
     """
     def __init__(self, task_set):
         self.task_set = task_set
+        self.completed_tasks = []
         
     def get_ready_tasks(self):
         """Get a list of all ready tasks in the task set
@@ -29,12 +30,12 @@ class Scheduler:
         # complete here 
         
         
-        # ready_tasks = self.get_ready_tasks()
-        # if not ready_tasks:
-        #     return None
-        # highest_priority = min([task.priority for task in ready_tasks])
-        # highest_priority_tasks = [task for task in ready_tasks if task.priority == highest_priority]
-        # return highest_priority_tasks[0]
+        ready_tasks = self.get_ready_tasks()
+        if not ready_tasks:
+            return None
+        highest_priority = min([task.priority for task in ready_tasks])
+        highest_priority_tasks = [task for task in ready_tasks if task.priority == highest_priority]
+        return highest_priority_tasks[0]
     def set_task_set(self, task_set):
         """Set the task set for the scheduler
         
